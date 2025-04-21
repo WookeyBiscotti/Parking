@@ -1,6 +1,7 @@
 #pragma once
 
 #include <chrono>
+#include <memory>
 #include <expected>
 #include <string>
 
@@ -43,7 +44,7 @@ public:
     // - carInfo: информация об автомобиле.
     // - inGateIdx: индекс въездного шлагбаума.
     // - tp: временная точка въезда.
-    virtual std::expected<std::unique_ptr<ITicket>, std::string /*error text*/> tryToEnter(const CarInfo& carInfo,
+    virtual std::tuple<std::unique_ptr<ITicket>, std::string /*error text*/> tryToEnter(const CarInfo& carInfo,
         std::size_t inGateIdx, TimePoint tp) = 0;
 
     // Пытается обработать выезд автомобиля с парковки через указанный шлагбаум.
@@ -53,7 +54,7 @@ public:
     // - outGateIdx: индекс выездного шлагбаума (должен быть корректным для данной парковки).
     // - tp: временная точка выезда (используется для расчета времени пребывания).
     // - ticket: билет, полученный при въезде.
-    virtual std::expected<GoodbyeMessage, std::string /*error text*/> tryToExit(const CarInfo& carInfo,
+    virtual std::tuple<GoodbyeMessage, std::string /*error text*/> tryToExit(const CarInfo& carInfo,
         std::size_t outGateIdx, TimePoint tp, ITicket* ticket) = 0;
 
     // Возвращает количество свободных мест
