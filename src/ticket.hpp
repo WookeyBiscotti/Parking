@@ -7,25 +7,25 @@ public:
     Ticket() = default;
 
     Ticket(std::string id, CarInfo carInfo, TimePoint entryTime)
-        : id_(move(id)), carInfo_(std::move(carInfo)), entryTime_(entryTime) {}
+        : _id(move(id)), _carInfo(std::move(carInfo)), _entryTime(entryTime) {}
 
     const std::string &id() const override
     {
-        return id_;
+        return _id;
     }
 
     const CarInfo &getCarInfo() const
     {
-        return carInfo_;
+        return _carInfo;
     }
 
     TimePoint getEntryTime() const
     {
-        return entryTime_;
+        return _entryTime;
     }
 
 private:
-    std::string id_;
-    CarInfo carInfo_;
-    TimePoint entryTime_;
+    std::string _id;
+    CarInfo _carInfo;
+    TimePoint _entryTime;
 };
