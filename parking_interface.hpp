@@ -38,6 +38,7 @@ using Price = double;
 struct TariffEntry {
     TimeInterval interval; // Временное окно действия тарифа
     Price price;           // Стоимость за единицу времени (за час/минуту)
+    CarType type;          // Тип транспортного средства из перечисления CarType
 };
 // Тарифная сетка в течение дня, представленная как упорядоченный список тарифных правил.
 using TariffDuringTheDay = std::vector<TariffEntry>;
